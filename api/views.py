@@ -13,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (AllowAny,)
 
 
 class MovieViewSet(viewsets.ModelViewSet):
@@ -24,7 +25,6 @@ class MovieViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['POST'])
     def rate_movie(self, request, pk=None):
         if 'stars' in request.data:
-
             movie = Movie.objects.get(id=pk)
             stars = request.data['stars']
             user = request.user
@@ -47,13 +47,13 @@ class MovieViewSet(viewsets.ModelViewSet):
             response = {'message': 'You need to provide stars'}
             return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
-    def update(self, request, *args, **kwargs):
-        response = {'message': 'You can update rating like that'}
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+    # def update(self, request, *args, **kwargs):
+    #     response = {'message': 'You can update rating like that'}
+    #     return Response(response, status=status.HTTP_400_BAD_REQUEST)
     
-    def create(self, request, *args, **kwargs):
-        response = {'message': 'You can create rating like that'}
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+    # def create(self, request, *args, **kwargs):
+    #     response = {'message': 'You can create rating like that'}
+    #     return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
@@ -61,12 +61,12 @@ class RatingViewSet(viewsets.ModelViewSet):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
-    def update(self, request, *args, **kwargs):
-        response = {'message': 'You can update rating like that'}
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+    # def update(self, request, *args, **kwargs):
+    #     response = {'message': 'You can update rating like that'}
+    #     return Response(response, status=status.HTTP_400_BAD_REQUEST)
     
-    def create(self, request, *args, **kwargs):
-        response = {'message': 'You can create rating like that'}
-        return Response(response, status=status.HTTP_400_BAD_REQUEST)
+    # def create(self, request, *args, **kwargs):
+    #     response = {'message': 'You can create rating like that'}
+    #     return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
     
