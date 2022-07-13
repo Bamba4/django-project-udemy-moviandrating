@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = [
-  
+  'movie-rater-tutor.herokuapp.com'
 ]
 
 
